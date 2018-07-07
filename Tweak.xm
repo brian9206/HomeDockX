@@ -65,19 +65,19 @@ long _dismissalSlidingMode = 0;
 // Set floating dock icons number
 %hook SBFloatingDockIconListView
 	+ (NSUInteger)maxIcons {
-		return 7;
+		return 6;
 	}
 	+ (NSUInteger)iconColumnsForInterfaceOrientation:(NSInteger)arg1 {
-		return 7;
+		return 6;
 	}
 	+ (NSUInteger)maxVisibleIconRowsInterfaceOrientation:(NSInteger)arg1 {
-		return 7;
+		return 6;
 	}
 %end
 
 %hook SBDockIconListView
 	+ (NSUInteger)maxIcons {
-		return 7;
+		return 6;
 	}
 %end
 
