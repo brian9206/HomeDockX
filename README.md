@@ -1,5 +1,5 @@
 # HomeDockX
-iPhone X gesture with perfectly compatible iPad floating dock
+iPhone X gesture with perfectly compatible iPad floating dock  
 Works well on iOS 11.3.1 with Electra1131
 
 # Credits
