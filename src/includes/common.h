@@ -16,6 +16,8 @@
 @interface SBApplication
 @property (nonatomic,readonly) NSString *bundleIdentifier;
 @property (nonatomic,readonly) SBApplicationInfo *info;
+
+-(BOOL)isClassic;
 @end
 
 #define isSpringBoardAtFront (![(SpringBoard*)[UIApplication sharedApplication] _accessibilityFrontMostApplication].bundleIdentifier)

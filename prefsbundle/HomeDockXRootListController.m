@@ -11,7 +11,7 @@
 }
 
 - (void)respring {
-	system("sleep 1 && killall SpringBoard");
+	system("sleep 2 && killall SpringBoard");
 }
 
 @end

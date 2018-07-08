@@ -23,11 +23,20 @@ NSMutableDictionary *capableApps = [NSMutableDictionary new];
 
 %hook SBApplication
 - (BOOL)isMedusaCapable {
+    if (!self.bundleIdentifier || [self isClassic]) {
+        return NO;
+    }
+
     // check the cached list first
     NSString *capable = [capableApps objectForKey:self.bundleIdentifier];
 
     if (capable) {
         return [capable intValue] == 1;
+    }
+
+    // check blacklisted app
+    if ([prefs isBlacklisted:self.bundleIdentifier]) {
+        return %orig;
     }
 
     // bundle ID is not exists in the cache.

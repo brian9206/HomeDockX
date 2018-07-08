@@ -18,7 +18,8 @@
 @property(nonatomic) int  maxSuggestion;
 
 // constructor
-- (id) init;
+- (id)init;
+- (BOOL)isBlacklisted:(NSString*)bundleIdentifier;
 
 + (HomeDockXPreference *)sharedInstance;
 

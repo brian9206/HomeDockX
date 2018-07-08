@@ -227,6 +227,77 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+
+			<key>label</key>
+			<string>Slide Over</string>
+		</dict>
+
+		<dict>
+			<key>bundle</key>
+			<string>AppList</string>
+			
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			
+			<key>isController</key>
+			<true/>
+			
+			<key>label</key>
+			<string>Blacklisted Apps</string>
+			
+			<key>ALSettingsPath</key>
+			<string>/var/mobile/Library/Preferences/pw.ssnull.homedockx.plist</string>
+			
+			<key>ALSettingsKeyPrefix</key>
+			<string>blacklisted-</string>
+			
+			<key>ALChangeNotification</key>
+			<string>pw.ssnull.homedockx/settingschanged</string>
+			
+			<key>ALAllowsSelection</key>
+			<integer>1</integer>
+			
+			<key>ALSectionDescriptors</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>User Applications</string>
+					
+					<key>predicate</key>
+					<string>isSystemApplication = FALSE</string>
+					
+					<key>cell-class-name</key>
+					<string>ALSwitchCell</string>
+					
+					<key>icon-size</key>
+					<integer>29</integer>
+					
+					<key>suppress-hidden-apps</key>
+					<integer>1</integer>
+				</dict>
+			
+				<dict>
+					<key>title</key>
+					<string>System Applications</string>
+					
+					<key>predicate</key>
+					<string>isSystemApplication = TRUE</string>
+					
+					<key>cell-class-name</key>
+					<string>ALSwitchCell</string>
+					
+					<key>icon-size</key>
+					<integer>29</integer>
+					
+					<key>suppress-hidden-apps</key>
+					<integer>1</integer>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 		</dict>
 
 		<dict>
