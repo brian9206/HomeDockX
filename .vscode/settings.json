@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.h": "objective-c",
+        "*.xm": "objective-c",
+        "*.plist": "xml"
+    }
+}

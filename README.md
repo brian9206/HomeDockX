@@ -1,5 +1,6 @@
-# GestureDock
-iPhone X Gesture + iPad floating dock with compatible gesture
+# HomeDockX
+iPhone X gesture + iPad floating dock with perfectly compatible gesture
+Works well on iOS 11.3.1 with Electra1131
 
 # Credits
 This tweak is just a quick pasta from the following tweaks with adjustments.

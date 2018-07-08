@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>title</key>
+	<string>HomeDockX</string>
+
+	<key>items</key>
+	<array>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			
+			<key>label</key>
+			<string>Tweaks</string>
+		</dict>
+		
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>homegesture</string>
+			
+			<key>label</key>
+			<string>Enable Home Gesture</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>floatingdock</string>
+			
+			<key>label</key>
+			<string>Enable Floating Dock</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			
+			<key>label</key>
+			<string>Home Gesture</string>
+
+			<key>footerText</key>
+			<string>Home gesture will automatically be disabled when you are using keyboard to prevent triggering home gesture by mistake when typing.</string>
+		</dict>
+		
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>nokeyboard</string>
+			
+			<key>label</key>
+			<string>Disable When Using Keyboard</string>
+		</dict>
+		
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			
+			<key>label</key>
+			<string>In-App Dock</string>
+
+			<key>footerText</key>
+			<string>If you enable In-App dock, you can swipe up from left of the screen to activate dock in-app. Right for home gesture.</string>
+		</dict>
+		
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>dockinapp</string>
+			
+			<key>label</key>
+			<string>Enable In-App Dock</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>homedismiss</string>
+			
+			<key>label</key>
+			<string>Dismiss by Home Button</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			
+			<key>label</key>
+			<string>Dock Suggestion</string>
+		</dict>
+		
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>docksuggestion</string>
+			
+			<key>label</key>
+			<string>Enable App Suggestion</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>showrecent</string>
+			
+			<key>label</key>
+			<string>Show Recent App</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+
+			<key>label</key>
+			<string>Maximum Number of Suggestion App</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			
+			<key>default</key>
+			<integer>2</integer>
+
+			<key>min</key>
+			<integer>1</integer>
+
+			<key>max</key>
+			<integer>5</integer>
+
+			<key>showValue</key>
+			<true/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>maxsuggestion</string>
+			
+			<key>label</key>
+			<string>Enable App Suggestion</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			
+			<key>label</key>
+			<string>Apply Settings (Respring)</string>
+			
+			<key>action</key>
+			<string>respring</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+
+			<key>footerText</key>
+			<string>Created by Brian Choi</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSStaticTextCell</string>
+			
+			<key>label</key>
+			<string>Credits: VitaTaf, KpwnZ</string>
+		</dict>
+	</array>
+</dict>
+</plist>

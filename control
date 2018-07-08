@@ -1,9 +1,9 @@
-Package: pw.ssnull.gesturedock
-Name: GestureDock
+Package: pw.ssnull.homedockx
+Name: HomeDockX
 Depends: mobilesubstrate
-Version: 0.0.1
+Version: 1.0.0
 Architecture: iphoneos-arm
-Description: iPhone X Gesture + iPad floating dock with compatible gesture
+Description: iPhone X gesture + iPad floating dock with perfectly compatible gesture
 Maintainer: Brian Choi
 Author: Brian Choi
 Section: Tweaks
