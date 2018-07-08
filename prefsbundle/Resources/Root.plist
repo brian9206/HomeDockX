@@ -7,7 +7,6 @@
 
 	<key>items</key>
 	<array>
-
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -27,7 +26,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>homegesture</string>
+			<string>enableHomeGesture</string>
 			
 			<key>label</key>
 			<string>Enable Home Gesture</string>
@@ -44,7 +43,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>floatingdock</string>
+			<string>enableDock</string>
 			
 			<key>label</key>
 			<string>Enable Floating Dock</string>
@@ -72,7 +71,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>nokeyboard</string>
+			<string>noKeyboard</string>
 			
 			<key>label</key>
 			<string>Disable When Using Keyboard</string>
@@ -100,7 +99,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>dockinapp</string>
+			<string>enableInAppDock</string>
 			
 			<key>label</key>
 			<string>Enable In-App Dock</string>
@@ -117,7 +116,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>homedismiss</string>
+			<string>enableHomeButtonDismiss</string>
 			
 			<key>label</key>
 			<string>Dismiss by Home Button</string>
@@ -142,7 +141,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>docksuggestion</string>
+			<string>enableDockSuggestion</string>
 			
 			<key>label</key>
 			<string>Enable App Suggestion</string>
@@ -159,7 +158,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>showrecent</string>
+			<string>showRecentApp</string>
 			
 			<key>label</key>
 			<string>Show Recent App</string>
@@ -193,7 +192,7 @@
 			<string>pw.ssnull.homedockx</string>
 			
 			<key>key</key>
-			<string>maxsuggestion</string>
+			<string>maxSuggestion</string>
 			
 			<key>label</key>
 			<string>Enable App Suggestion</string>

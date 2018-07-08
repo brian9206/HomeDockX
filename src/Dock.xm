@@ -2,9 +2,7 @@
  * iPad Floating Dock implementation
  * Credit: KpwnZ for his FloatingDockXI
  */
-#import "includes/KeyboardStateListener.h"
-#import <SpringBoard/SpringBoard.h>
-#import <SpringBoard/SBApplication.h>
+#include "includes/common.h"
 
 @interface SBGrabberTongue : NSObject
 -(UIGestureRecognizer *)edgePullGestureRecognizer;
@@ -19,6 +17,8 @@
 -(void)_dismissFloatingDockIfPresentedAnimated:(BOOL)arg1 completionHandler:(/*^block*/id)arg2;
 -(BOOL)isFloatingDockPresented;
 @end
+
+%group Dock
 
 // global variable
 SBFloatingDockController *dock = NULL;
@@ -35,51 +35,56 @@ SBFloatingDockController *dock = NULL;
 }
 
 - (BOOL)_systemGestureManagerAllowsFloatingDockGesture {
-    // no swipe up dock if we are using keyboard
-    if ([KeyboardStateListener sharedInstance].visible) {
-        return NO;
+    if (prefs.enableHomeGesture) {
+        // get all the information that we need
+        UIGestureRecognizer *edgePullGestureRecognizer = [[self.viewController grabberTongue] edgePullGestureRecognizer];
+        CGPoint location = [edgePullGestureRecognizer locationInView:edgePullGestureRecognizer.view];
+
+        // swipe up only for 1/3 left of the screen
+        if (location.x > edgePullGestureRecognizer.view.bounds.size.width / 2) {
+            return NO;
+        }
     }
 
-    // get all the information that we need
-    UIGestureRecognizer *edgePullGestureRecognizer = [[self.viewController grabberTongue] edgePullGestureRecognizer];
-    CGPoint location = [edgePullGestureRecognizer locationInView:edgePullGestureRecognizer.view];
-
-    // swipe up only for 1/3 left of the screen
-    if (location.x > edgePullGestureRecognizer.view.bounds.size.width / 2) {
-        return NO;
-    }
-
-    return YES;
+    return prefs.enableInAppDock;
 }
 %end
 
 // Enable floating dock recent app / suggestion
 %hook SBFloatingDockSuggestionsModel
 -(id)initWithMaximumNumberOfSuggestions:(unsigned long long)maxSuggestion iconController:(id)arg2 recentsController:(id)arg3 recentsDataStore:(id)arg4 recentsDefaults:(id)arg5 floatingDockDefaults:(id)arg6 appSuggestionManager:(id)arg7 analyticsClient:(id)arg8 {
-    maxSuggestion = 2;
+    maxSuggestion = prefs.maxSuggestion;
     return %orig;
 }
 
 - (BOOL)_shouldProcessAppSuggestion:(id)arg1 {
-    return NO;
+    return prefs.enableDockSuggestion;
 }
 
 - (BOOL)recentsEnabled {
-    return YES;
+    return prefs.showRecentApp;
 }
 %end
 
 // Dismiss floating dock by pressing home button
 %hook SBHomeHardwareButton
 -(void)singlePressUp:(id)arg1 {
-    SBApplication *currentApp = [(SpringBoard*)[UIApplication sharedApplication] _accessibilityFrontMostApplication];
-
-    // must not be springboard and dock must be swiped up
-    if (currentApp.bundleIdentifier && dock && [dock isFloatingDockPresented]) {
-        [dock _dismissFloatingDockIfPresentedAnimated:YES completionHandler:NULL];
-        return;
+    if (prefs.enableHomeButtonDismiss) {
+        // must not be springboard and dock must be swiped up
+        if (!isSpringBoardAtFront && dock && [dock isFloatingDockPresented]) {
+            [dock _dismissFloatingDockIfPresentedAnimated:YES completionHandler:NULL];
+            return;
+        }
     }
 
     %orig;
 }
 %end
+
+%end    // %group Dock
+
+%ctor {
+    if (prefs.enableDock) {
+        %init(Dock);
+    }
+}

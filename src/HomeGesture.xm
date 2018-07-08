@@ -2,13 +2,14 @@
  * Home Gesture implementation
  * Credit: VitaTaf for his Home Gesture
  */
-#import <SpringBoard/SpringBoard.h>
-#import <SpringBoard/SBApplication.h>
+#include "includes/common.h"
 
 @interface SBHomeGesturePanGestureRecognizer
 -(void)reset;
 -(void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 @end
+
+%group HomeGesture
 
 // global variable
 long _dismissalSlidingMode = 0;
@@ -71,19 +72,38 @@ long _dismissalSlidingMode = 0;
 %end
 
 %hook SBHomeGesturePanGestureRecognizer
+    void resetTouch(SBHomeGesturePanGestureRecognizer *self, NSSet *touches, id event) {
+        // stop touching the screen
+        [self touchesEnded: touches withEvent: event];
+        [self reset];
+    }
+
     -(void)touchesBegan:(NSSet *)touches withEvent:(id)event {
-        SBApplication *currentApp = [(SpringBoard*)[UIApplication sharedApplication] _accessibilityFrontMostApplication];
         UITouch *touch = [touches anyObject];
 
-        // do not do home gesture for 1/3 left of the screen
-        if (currentApp.bundleIdentifier && [touch locationInView:touch.view].x <= touch.view.bounds.size.width / 2) {
-            // stop touching the screen
-            [self touchesEnded: touches withEvent: event];
-            [self reset];
+        // do not do home gesture for 1/3 left of the screen if dock is enabled
+        if (!isSpringBoardAtFront && 
+            prefs.enableDock && 
+            [touch locationInView:touch.view].x <= touch.view.bounds.size.width / 2
+        ) {
+            resetTouch(self, touches, event);
+            return;
+        }
 
+        // do not enable home gesture when using keyboard
+        if (prefs.noKeyboard && isKeyboardVisible) {
+            resetTouch(self, touches, event);
             return;
         }
 
         return %orig;
     }
 %end
+
+%end    // end %group HomeGesture
+
+%ctor {
+    if (prefs.enableHomeGesture) {
+        %init(HomeGesture);
+    }
+}
