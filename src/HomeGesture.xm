@@ -13,6 +13,7 @@
 
 // global variable
 long _dismissalSlidingMode = 0;
+BOOL _isDashboardActive = 0;
 
 // Enable home gestures
 %hook BSPlatform
@@ -79,25 +80,57 @@ long _dismissalSlidingMode = 0;
     }
 
     - (void)touchesBegan:(NSSet *)touches withEvent:(id)event {
-        UITouch *touch = [touches anyObject];
+        if (!_isDashboardActive) {
+            UITouch *touch = [touches anyObject];
 
-        // do not do home gesture for 1/3 left of the screen if dock is enabled
-        if (!isSpringBoardAtFront && 
-            prefs.enableDock && 
-            [touch locationInView:touch.view].x <= touch.view.bounds.size.width / 2
-        ) {
-            resetTouch(self, touches, event);
-            return;
-        }
+            // do not do home gesture for 1/2 left of the screen if dock is enabled
+            if (!isSpringBoardAtFront && 
+                prefs.enableDock
+            ) {
+                BOOL reset = NO;
 
-        // do not enable home gesture when using keyboard
-        if (prefs.noKeyboard && isKeyboardVisible) {
-            resetTouch(self, touches, event);
-            return;
+                switch ([(SpringBoard*)[UIApplication sharedApplication] activeInterfaceOrientation]) {
+                    case 1: // UIInterfaceOrientationPortrait
+                        reset = [touch locationInView:touch.view].x < touch.view.bounds.size.width / 2;
+                        break;
+
+                    case 2: // UIInterfaceOrientationPortraitUpsideDown
+                        reset = [touch locationInView:touch.view].x > touch.view.bounds.size.width / 2;
+                        break;
+
+                    case 3: // UIInterfaceOrientationLandscapeRight
+                    case 4: // UIInterfaceOrientationLandscapeLeft
+                        reset = YES;
+                }
+
+                if (reset) {
+                    resetTouch(self, touches, event);
+                    return;
+                }
+            }
+
+            // do not enable home gesture when using keyboard
+            if (prefs.noKeyboard && isKeyboardVisible) {
+                resetTouch(self, touches, event);
+                return;
+            }
         }
 
         return %orig;
     }
+%end
+
+// Listen for dashboard active state change
+%hook SBDashBoardViewController
+- (void)viewWillAppear:(_Bool)arg1 {
+    %orig;
+    _isDashboardActive = YES;
+}
+
+- (void)viewWillDisappear:(_Bool)arg1 {
+    %orig;
+    _isDashboardActive = NO;
+ }
 %end
 
 %end    // end %group HomeGesture

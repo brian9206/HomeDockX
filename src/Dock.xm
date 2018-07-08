@@ -40,8 +40,19 @@ SBFloatingDockController *dock = NULL;
         UIGestureRecognizer *edgePullGestureRecognizer = [[self.viewController grabberTongue] edgePullGestureRecognizer];
         CGPoint location = [edgePullGestureRecognizer locationInView:edgePullGestureRecognizer.view];
 
-        // swipe up only for 1/3 left of the screen
-        if (location.x > edgePullGestureRecognizer.view.bounds.size.width / 2) {
+        bool stop = NO;
+
+        switch ([(SpringBoard*)[UIApplication sharedApplication] activeInterfaceOrientation]) {
+            case 1: // UIInterfaceOrientationPortrait
+                stop = location.x > edgePullGestureRecognizer.view.bounds.size.width / 2;
+                break;
+
+            case 2: // UIInterfaceOrientationPortraitUpsideDown
+                stop = location.x < edgePullGestureRecognizer.view.bounds.size.width / 2;
+                break;
+        }
+
+        if (stop) {
             return NO;
         }
     }
