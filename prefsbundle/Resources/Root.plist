@@ -196,6 +196,12 @@
 			
 			<key>label</key>
 			<string>Enable App Suggestion</string>
+
+			<key>isSegmented</key>
+			<true/>
+
+			<key>segmentCount</key>
+			<real>0.1</real>
 		</dict>
 
 		<dict>
