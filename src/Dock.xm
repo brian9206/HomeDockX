@@ -25,7 +25,7 @@ SBFloatingDockController *dock = NULL;
 
  // Enable floating dock
 %hook SBFloatingDockController
--(id)initWithIconController:(id)arg1 applicationController:(id)arg2 recentsController:(id)arg3 recentsDataStore:(id)arg4 transitionCoordinator:(id)arg5 appSuggestionManager:(id)arg6 analyticsClient:(id)arg7 {
+- (id)initWithIconController:(id)arg1 applicationController:(id)arg2 recentsController:(id)arg3 recentsDataStore:(id)arg4 transitionCoordinator:(id)arg5 appSuggestionManager:(id)arg6 analyticsClient:(id)arg7 {
     dock = self;
     return %orig;
 }
@@ -52,7 +52,7 @@ SBFloatingDockController *dock = NULL;
 
 // Enable floating dock recent app / suggestion
 %hook SBFloatingDockSuggestionsModel
--(id)initWithMaximumNumberOfSuggestions:(unsigned long long)maxSuggestion iconController:(id)arg2 recentsController:(id)arg3 recentsDataStore:(id)arg4 recentsDefaults:(id)arg5 floatingDockDefaults:(id)arg6 appSuggestionManager:(id)arg7 analyticsClient:(id)arg8 {
+- (id)initWithMaximumNumberOfSuggestions:(unsigned long long)maxSuggestion iconController:(id)arg2 recentsController:(id)arg3 recentsDataStore:(id)arg4 recentsDefaults:(id)arg5 floatingDockDefaults:(id)arg6 appSuggestionManager:(id)arg7 analyticsClient:(id)arg8 {
     maxSuggestion = prefs.maxSuggestion;
     return %orig;
 }
@@ -68,7 +68,7 @@ SBFloatingDockController *dock = NULL;
 
 // Dismiss floating dock by pressing home button
 %hook SBHomeHardwareButton
--(void)singlePressUp:(id)arg1 {
+- (void)singlePressUp:(id)arg1 {
     if (prefs.enableHomeButtonDismiss) {
         // must not be springboard and dock must be swiped up
         if (!isSpringBoardAtFront && dock && [dock isFloatingDockPresented]) {
@@ -78,6 +78,17 @@ SBFloatingDockController *dock = NULL;
     }
 
     %orig;
+}
+%end
+
+// Disable home screen rotation because of layout bug
+%hook SpringBoard
+- (BOOL)homeScreenSupportsRotation {
+    return NO;
+}
+
+- (BOOL)homeScreenRotationStyle {
+    return 0;
 }
 %end
 

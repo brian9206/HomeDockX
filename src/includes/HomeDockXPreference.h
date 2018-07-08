@@ -5,6 +5,7 @@
 
 @property(nonatomic) BOOL enableHomeGesture;
 @property(nonatomic) BOOL enableDock;
+@property(nonatomic) BOOL enableMedusa;
 
 // home gesture
 @property(nonatomic) BOOL noKeyboard;

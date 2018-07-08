@@ -13,6 +13,9 @@
 			
 			<key>label</key>
 			<string>Tweaks</string>
+
+			<key>footerText</key>
+			<string>You need to enable floating dock and in-app dock in order to use Slide Over.</string>
 		</dict>
 		
 		<dict>
@@ -47,6 +50,23 @@
 			
 			<key>label</key>
 			<string>Enable Floating Dock</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			
+			<key>default</key>
+			<false/>
+			
+			<key>defaults</key>
+			<string>pw.ssnull.homedockx</string>
+			
+			<key>key</key>
+			<string>enableMedusa</string>
+			
+			<key>label</key>
+			<string>Enable Slide Over</string>
 		</dict>
 
 		<dict>

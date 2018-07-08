@@ -22,7 +22,10 @@ static HomeDockXPreference *sharedInstance;
         if (prefs) {
             self.enableHomeGesture = [[prefs objectForKey:@"enableHomeGesture"] boolValue];
             self.enableDock = [[prefs objectForKey:@"enableDock"] boolValue];
+            self.enableMedusa = [[prefs objectForKey:@"enableMedusa"] boolValue];
+
             self.noKeyboard = [[prefs objectForKey:@"noKeyboard"] boolValue];
+
             self.enableInAppDock = [[prefs objectForKey:@"enableInAppDock"] boolValue];
             self.enableHomeButtonDismiss = [[prefs objectForKey:@"enableHomeButtonDismiss"] boolValue];
             self.enableDockSuggestion = [[prefs objectForKey:@"enableDockSuggestion"] boolValue];

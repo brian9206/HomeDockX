@@ -78,7 +78,7 @@ long _dismissalSlidingMode = 0;
         [self reset];
     }
 
-    -(void)touchesBegan:(NSSet *)touches withEvent:(id)event {
+    - (void)touchesBegan:(NSSet *)touches withEvent:(id)event {
         UITouch *touch = [touches anyObject];
 
         // do not do home gesture for 1/3 left of the screen if dock is enabled
