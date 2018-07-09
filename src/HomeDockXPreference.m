@@ -3,24 +3,32 @@
  */
 #import "includes/HomeDockXPreference.h"
 
-static HomeDockXPreference *sharedInstance;
+static HomeDockXPreference *sharedInstance = NULL;
 
 @implementation HomeDockXPreference {
     NSDictionary *_prefsDict;
 }
 
 + (HomeDockXPreference *)sharedInstance {
-    return sharedInstance;
-}
+    if (!sharedInstance) {
+        sharedInstance = [[HomeDockXPreference alloc] init];
+    }
 
-+ (void)load {
-    sharedInstance = [[self alloc] init];
+    return sharedInstance;
 }
 
 - (id)init {
     if ((self = [super init])) {
-        NSDictionary *prefs = [[NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/pw.ssnull.homedockx.plist"] copy];
-        
+        NSDictionary *prefs = NULL;
+
+        CFStringRef appID = CFSTR("pw.ssnull.homedockx");
+        CFArrayRef keyList = CFPreferencesCopyKeyList(appID, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+
+        if (keyList) {
+            prefs = (NSDictionary *)CFPreferencesCopyMultiple(keyList, appID, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+            CFRelease(keyList);
+        }
+
         if (prefs) {
             self.enableHomeGesture = [[prefs objectForKey:@"enableHomeGesture"] boolValue];
             self.enableDock = [[prefs objectForKey:@"enableDock"] boolValue];
@@ -60,3 +68,4 @@ static HomeDockXPreference *sharedInstance;
 }
 
 @end
+

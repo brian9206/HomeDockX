@@ -11,7 +11,12 @@
 }
 
 - (void)respring {
-	system("sleep 2 && killall SpringBoard");
+	CFPreferencesSynchronize(CFSTR("pw.ssnull.homedockx"), kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+	system("killall SpringBoard");
+#pragma GCC diagnostic pop
 }
 
 @end
