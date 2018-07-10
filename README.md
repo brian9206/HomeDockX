@@ -1,16 +1,14 @@
-<center>
-<h2>
 
-![HomeDockX](prefsbundle/Resources/HomeDockX@2x.png)  
-HomeDockX  
-
+<h2 align="center">
+    <img src="prefsbundle/Resources/HomeDockX@2x.png" /><br />
+    HomeDockX
 </h2>
-
-iPhone X gesture with perfectly compatible iPad floating dock  
-Works well on iOS 11.3.1 with Electra1131
-
-**This tweak is designed for classic iPhones (iPhone that without notch)**
-</center>
+<p align="center">
+    iPhone X gesture with perfectly compatible iPad floating dock<br/>
+    Works well on iOS 11.3.1 with Electra1131<br/>
+    <br/>
+    <strong>This tweak is designed for classic iPhones (iPhone that without notch)</strong>
+</p>
 
 
 ## Features
@@ -19,6 +17,7 @@ Works well on iOS 11.3.1 with Electra1131
 - Enable in-app floating dock
 - Dismiss in-app dock by pressing physical home button
 - Enable iPad Slide Over
+- Fix landscape only app being launched in portrait because of Slide Over
 - iPad Slide Over app blacklisting
 - Disable home gesture when using keyboard
 - Bridge home gesture and floating dock gesture *
