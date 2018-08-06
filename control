@@ -1,7 +1,7 @@
 Package: pw.ssnull.homedockx
 Name: HomeDockX
 Depends: firmware (>= 11.0), mobilesubstrate, preferenceloader, applist
-Version: 1.2.2
+Version: 1.2.3
 Architecture: iphoneos-arm
 Description: iPhone X gesture with perfectly compatible iPad floating dock
 Maintainer: Brian Choi <brian9206@hotmail.com>
